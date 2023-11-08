@@ -50,4 +50,17 @@ public class RpnResolverTest {
         // Assert
         assertEquals("Invalid expression", exception.getMessage());
     }
+
+    @Test()
+    void resolve_ShouldReturnNegative1Number_WhenInputIs_1_0_minus() {
+        // Arrange
+        String input = "1 0 -";
+
+        // Act
+        Integer actual = RpnResolver.resolve(input);
+
+        // Assert
+        assertEquals(-1, actual);
+    }
+
 }
