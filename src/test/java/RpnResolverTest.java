@@ -63,4 +63,17 @@ public class RpnResolverTest {
         assertEquals(-1, actual);
     }
 
+    @Test()
+    void resolve_ShouldReturnAnIllegalArgumentException_WhenInputContainsAFloatNumber() {
+        // Arrange
+        String input = "4,2 9 +";
+
+        // Act
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> RpnResolver.resolve(input));
+
+        // Assert
+        assertEquals("Invalid expression", exception.getMessage());
+    }
+
+    
 }
