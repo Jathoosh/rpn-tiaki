@@ -16,4 +16,16 @@ public class RpnResolverTest {
         // Assert
         assertEquals(3, actual, "Should have returned 3");
     }
+
+    @Test()
+    void resolve_ShouldReturn2_WhenInputIs1_2_Plus_1_Minus() {
+        // Arrange
+        String input = "1 2 + 1 -";
+
+        // Act
+        int actual = RpnResolver.resolve(input);
+
+        // Assert
+        assertEquals(2, actual, "Should have returned 2");
+    }
 }
