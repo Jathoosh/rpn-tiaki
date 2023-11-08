@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -38,5 +37,17 @@ public class RpnResolverTest {
         // Act
         // Assert
         assertThrows(IllegalArgumentException.class, () -> RpnResolver.resolve(input));
+    }
+
+    @Test()
+    void resolve_ShouldReturnAnIllegalArgumentException_WhenWeHave2OperatorsThatFollowsAnOperand() {
+        // Arrange
+        String input = "1 + +";
+
+        // Act
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> RpnResolver.resolve(input));
+
+        // Assert
+        assertEquals("Invalid expression", exception.getMessage());
     }
 }

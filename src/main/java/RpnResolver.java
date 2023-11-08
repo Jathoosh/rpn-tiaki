@@ -23,12 +23,15 @@ public class RpnResolver {
         if(tokens.length < 3) {
             throw new IllegalArgumentException("Not enough operands");
         }
-
+        
         for (String token : tokens) {
             try {
                 Integer parsedNumber = Integer.valueOf(token);
                 numbers.push(parsedNumber);
             } catch (NumberFormatException e) {
+                if (numbers.size() != 2) {
+                    throw new IllegalArgumentException("Invalid expression");
+                }
                 switch (token) {
                     case "+":
                         Integer a = numbers.pop();
@@ -56,4 +59,5 @@ public class RpnResolver {
             return null;
         }
     }
+
 }
