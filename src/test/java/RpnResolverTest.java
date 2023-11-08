@@ -49,7 +49,19 @@ public class RpnResolverTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> RpnResolver.resolve(input));
 
         // Assert
-        assertEquals("Invalid expression", exception.getMessage());
+        assertEquals("Not enough operands", exception.getMessage());
+    }
+
+    @Test()
+    void resolve_ShouldReturnAnIllegalArgumentException_WhenWeHave2Operators() {
+        // Arrange
+        String input = "1 1 + +";
+
+        // Act
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> RpnResolver.resolve(input));
+
+        // Assert
+        assertEquals("Not enough operands", exception.getMessage());
     }
 
     @Test()

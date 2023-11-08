@@ -16,16 +16,12 @@ public class RpnResolver {
 
         Stack<Integer> numbers = new Stack<>();
 
-        if(tokens.size() < 3 && !tokens.contains("sqrt")) {
-            throw new IllegalArgumentException("Not enough operands");
-        }
-
         for (String token : tokens) {
             try {
                 Integer parsedNumber = Integer.valueOf(token);
                 numbers.push(parsedNumber);
             } catch (NumberFormatException e) {
-                if (numbers.size() != 2 && !tokens.contains("sqrt") && !tokens.contains("max")) {
+                if (numbers.isEmpty()) {
                     throw new IllegalArgumentException("Invalid expression");
                 }
                 computeOperation(numbers, token);
@@ -37,16 +33,8 @@ public class RpnResolver {
 
     private static void computeOperation(Stack<Integer> stack, String operator) {
         OperationStrategy operationStrategy;
-        switch (operator) {
-            case "+":
-                operationStrategy = new PlusOperationStrategy();
-                break;
-            case "-":
-                operationStrategy = new MinusOperationStrategy();
-                break;
-            case "*":
-                operationStrategy = new TimesOperationStrategy();
-                break;
+
+        switch(operator) {
             case "sqrt":
                 operationStrategy = new SqrtOperationStrategy();
                 break;
@@ -54,10 +42,25 @@ public class RpnResolver {
                 operationStrategy = new MaxOperationStrategy();
                 break;
             default:
+                operationStrategy = handleBasicOperators(operator, stack);
+        }
+        stack.push(operationStrategy.computeOperation(stack));
+    }
+
+    private static OperationStrategy handleBasicOperators(String operator, Stack<Integer> stack) {
+        if(stack.size() != 2) {
+            throw new IllegalArgumentException("Not enough operands");
+        }
+        switch (operator) {
+            case "+":
+                return new PlusOperationStrategy();
+            case "-":
+                return new MinusOperationStrategy();
+            case "*":
+                return new TimesOperationStrategy();
+            default:
                 throw new IllegalArgumentException("Unknown operator: " + operator);
         }
-
-        stack.push(operationStrategy.computeOperation(stack));
     }
 
 }
