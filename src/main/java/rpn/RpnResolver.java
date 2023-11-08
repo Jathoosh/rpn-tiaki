@@ -1,3 +1,10 @@
+package rpn;
+
+import rpn.operations.MinusOperationStrategy;
+import rpn.operations.PlusOperationStrategy;
+import rpn.operations.SqrtOperationStrategy;
+import rpn.operations.TimesOperationStrategy;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -38,21 +45,25 @@ public class RpnResolver {
     }
 
     private static void computeOperation(Stack<Integer> stack, String operator) {
-        Integer a = stack.pop();
-        Integer b = stack.pop();
+        OperationStrategy operationStrategy;
         switch (operator) {
             case "+":
-                stack.push(a + b);
+                operationStrategy = new PlusOperationStrategy();
                 break;
             case "-":
-                stack.push(b - a);
+                operationStrategy = new MinusOperationStrategy();
                 break;
             case "*":
-                stack.push(a * b);
+                operationStrategy = new TimesOperationStrategy();
+                break;
+            case "sqrt":
+                operationStrategy = new SqrtOperationStrategy();
                 break;
             default:
                 throw new IllegalArgumentException("Unknown operator: " + operator);
         }
+
+        stack.push(operationStrategy.computeOperation(stack));
     }
 
 }
