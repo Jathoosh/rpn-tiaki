@@ -54,7 +54,7 @@ public class RpnResolverTest {
     @Test()
     void resolve_ShouldReturnNegative1Number_WhenInputIs_1_0_minus() {
         // Arrange
-        String input = "1 0 -";
+        String input = "0 1 -";
 
         // Act
         Integer actual = RpnResolver.resolve(input);
@@ -85,5 +85,17 @@ public class RpnResolverTest {
 
         // Assert
         assertEquals(6, actual);
+    }
+
+    @Test()
+    void resolve_ShouldReturn40_WhenInputIs5_2_Times_12_Plus_2_Minus_2_Times() {
+        // Arrange
+        String input = "5 2 * 12 + 2 - 2 *";
+
+        // Act
+        int actual = RpnResolver.resolve(input);
+
+        // Assert
+        assertEquals(40, actual);
     }
 }

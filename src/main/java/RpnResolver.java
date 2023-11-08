@@ -47,7 +47,7 @@ public class RpnResolver {
                 stack.push(a + b);
                 break;
             case "-":
-                stack.push(a - b);
+                stack.push(b - a);
                 break;
             case "*":
                 stack.push(a * b);
