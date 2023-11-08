@@ -38,7 +38,7 @@ public class RpnResolver {
                 Integer parsedNumber = Integer.valueOf(token);
                 numbers.push(parsedNumber);
             } catch (NumberFormatException e) {
-                if (numbers.size() != 2 && !tokens.contains("sqrt")) {
+                if (numbers.size() != 2 && !tokens.contains("sqrt") && !tokens.contains("max")) {
                     throw new IllegalArgumentException("Invalid expression");
                 }
                 computeOperation(numbers, token);

@@ -123,4 +123,16 @@ public class RpnResolverTest {
         // Assert
         assertEquals(11,actual);
     }
+
+    @Test()
+    void resolve_ShouldReturn22_When15_12_5_0_22_21_max() {
+        // Arrange
+        String input = "15 12 5 0 22 21 max";
+
+        // Act
+        int actual = RpnResolver.resolve(input);
+
+        // Assert
+        assertEquals(22,actual);
+    }
 }
