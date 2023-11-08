@@ -23,7 +23,7 @@ public class RpnResolver {
         if(tokens.length < 3) {
             throw new IllegalArgumentException("Not enough operands");
         }
-        
+
         for (String token : tokens) {
             try {
                 Integer parsedNumber = Integer.valueOf(token);
@@ -34,14 +34,10 @@ public class RpnResolver {
                 }
                 switch (token) {
                     case "+":
-                        Integer a = numbers.pop();
-                        Integer b = numbers.pop();
-                        numbers.push(a + b);
+                        computeOperation(numbers, 1);
                         break;
                     case "-":
-                        Integer a1 = numbers.pop();
-                        Integer b1 = numbers.pop();
-                        numbers.push(b1 - a1);
+                        computeOperation(numbers, -1);
                         break;
                     default:
                         throw new IllegalArgumentException("Unknown operator: " + token);
@@ -52,12 +48,8 @@ public class RpnResolver {
         return numbers.pop();
     }
 
-    private Integer parseToken(String token) {
-        try {
-            return Integer.valueOf(token);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+    private static void computeOperation(Stack<Integer> stack, int coefficient) {
+        stack.push(coefficient*stack.pop() + stack.pop());
     }
 
 }
