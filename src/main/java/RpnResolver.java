@@ -12,7 +12,17 @@ public class RpnResolver {
 
     }
 
-    public static int resolve(String input) {
-        return 3;
+    public static Integer resolve(String input) {
+        String[] tokens = input.split(" ");
+
+        switch (tokens[2]) {
+            case "+":
+                return Integer.parseInt(tokens[0]) + Integer.parseInt(tokens[1]);
+            case "-":
+                return Integer.parseInt(tokens[0]) - Integer.parseInt(tokens[1]);
+            default:
+                return null;
+        }
+
     }
 }
