@@ -20,6 +20,10 @@ public class RpnResolver {
 
         Stack<Integer> numbers = new Stack<>();
 
+        if(tokens.length < 3) {
+            throw new IllegalArgumentException("Not enough operands");
+        }
+
         for (String token : tokens) {
             try {
                 Integer parsedNumber = Integer.valueOf(token);

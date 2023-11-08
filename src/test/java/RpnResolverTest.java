@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RpnResolverTest {
 
@@ -27,5 +28,15 @@ public class RpnResolverTest {
 
         // Assert
         assertEquals(2, actual, "Should have returned 2");
+    }
+
+    @Test()
+    void resolve_ShouldReturnAnIllegalArgumentException_WhenWeHaveAtMost1OperandWithOneOperator() {
+        // Arrange
+        String input = "1 +";
+
+        // Act
+        // Assert
+        assertThrows(IllegalArgumentException.class, () -> RpnResolver.resolve(input));
     }
 }
