@@ -14,7 +14,7 @@ public class RpnResolverTest {
         int actual = RpnResolver.resolve(input);
 
         // Assert
-        assertEquals(3, actual, "Should have returned 3");
+        assertEquals(3, actual);
     }
 
     @Test()
@@ -26,7 +26,7 @@ public class RpnResolverTest {
         int actual = RpnResolver.resolve(input);
 
         // Assert
-        assertEquals(2, actual, "Should have returned 2");
+        assertEquals(2, actual);
     }
 
     @Test()
@@ -75,5 +75,15 @@ public class RpnResolverTest {
         assertEquals("Invalid expression", exception.getMessage());
     }
 
-    
+    @Test()
+    void resolve_ShouldReturn6_WhenInputIs2_3_Times() {
+        // Arrange
+        String input = "2 3 *";
+
+        // Act
+        int actual = RpnResolver.resolve(input);
+
+        // Assert
+        assertEquals(6, actual);
+    }
 }

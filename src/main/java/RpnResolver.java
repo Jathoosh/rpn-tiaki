@@ -49,6 +49,9 @@ public class RpnResolver {
             case "-":
                 stack.push(a - b);
                 break;
+            case "*":
+                stack.push(a * b);
+                break;
             default:
                 throw new IllegalArgumentException("Unknown operator: " + operator);
         }
