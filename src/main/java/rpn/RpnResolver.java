@@ -1,9 +1,6 @@
 package rpn;
 
-import rpn.operations.MinusOperationStrategy;
-import rpn.operations.PlusOperationStrategy;
-import rpn.operations.SqrtOperationStrategy;
-import rpn.operations.TimesOperationStrategy;
+import rpn.operations.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -62,6 +59,9 @@ public class RpnResolver {
                 break;
             case "sqrt":
                 operationStrategy = new SqrtOperationStrategy();
+                break;
+            case "max":
+                operationStrategy = new MaxOperationStrategy();
                 break;
             default:
                 throw new IllegalArgumentException("Unknown operator: " + operator);
