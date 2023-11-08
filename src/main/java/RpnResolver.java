@@ -1,7 +1,5 @@
-import java.util.Scanner;
-import java.util.Stack;
-
-import static java.lang.Integer.parseInt;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class RpnResolver {
     public static void main(String[] args) {
@@ -16,11 +14,11 @@ public class RpnResolver {
     }
 
     public static Integer resolve(String input) {
-        String[] tokens = input.split(" ");
+        List<String> tokens = Arrays.asList(input.split(" "));
 
         Stack<Integer> numbers = new Stack<>();
 
-        if(tokens.length < 3) {
+        if(tokens.size() < 3 && !tokens.contains("sqrt")) {
             throw new IllegalArgumentException("Not enough operands");
         }
 
@@ -29,7 +27,7 @@ public class RpnResolver {
                 Integer parsedNumber = Integer.valueOf(token);
                 numbers.push(parsedNumber);
             } catch (NumberFormatException e) {
-                if (numbers.size() != 2) {
+                if (numbers.size() != 2 && !tokens.contains("sqrt")) {
                     throw new IllegalArgumentException("Invalid expression");
                 }
                 computeOperation(numbers, token);

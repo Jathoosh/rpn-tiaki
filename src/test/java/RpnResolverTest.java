@@ -98,4 +98,16 @@ public class RpnResolverTest {
         // Assert
         assertEquals(40, actual);
     }
+
+    @Test()
+    void resolve_ShouldReturn3_WhenInput9_sqrt() {
+        // Arrange
+        String input = "9 sqrt";
+
+        // Act
+        int actual = RpnResolver.resolve(input);
+
+        // Assert
+        assertEquals(3, actual);
+    }
 }
