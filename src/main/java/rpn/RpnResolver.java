@@ -21,7 +21,11 @@ public class RpnResolver {
     }
 
     public static Integer resolve(String input) {
-        List<String> tokens = Arrays.asList(input.split(" "));
+        List<String> tokens = Arrays.stream(
+                input.split(" "))
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList()
+        );
 
         Stack<Integer> numbers = new Stack<>();
 

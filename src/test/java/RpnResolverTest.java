@@ -111,4 +111,16 @@ public class RpnResolverTest {
         // Assert
         assertEquals(3, actual);
     }
+
+    @Test()
+    void resolve_ShouldIgnoreMultipleSpaces_WhenMultiplesSpacesIsPresent() {
+        // Arrange
+        String input = "3 8  +";
+
+        // Act
+        int actual = RpnResolver.resolve(input);
+
+        // Assert
+        assertEquals(11,actual);
+    }
 }
